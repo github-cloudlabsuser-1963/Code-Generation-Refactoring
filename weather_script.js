@@ -3,7 +3,8 @@ const fetch = require("node-fetch");
 const API_KEY = "YOUR_API_KEY"; // Reemplaza con tu clave de API
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
-function getWeather(city) {
+function getWeather() {
+    const city = "Buenos Aires";
     const url = `${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric`;
 
     fetch(url)
@@ -25,24 +26,6 @@ function getWeather(city) {
         });
 }
 
-// Interfaz para usar desde la consola
-const readline = require("readline");
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-console.log("Welcome to the Weather App!");
-console.log("Type the name of a city to get the current weather.");
-console.log("Type 'exit' to quit.");
-
-rl.on("line", (input) => {
-    if (input.toLowerCase() === "exit") {
-        console.log("Goodbye!");
-        rl.close();
-        return;
-    }
-
-    getWeather(input);
-});
+// Llama a la función para mostrar el clima de Buenos Aires
+console.log("Fetching weather data for Buenos Aires...");
+getWeather();
